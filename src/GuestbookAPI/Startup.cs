@@ -42,8 +42,8 @@ namespace GuestbookAPI
             services.AddMvc();
 
             //Add SQL Connection Service
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=GuestbookAPI;Trusted_Connection=True;";
-            services.AddDbContext<GuestbookContext>(options => options.UseSqlServer(connection));
+            string connectionString = Configuration.GetSection("ConnectionStrings:DefaultConnection").Value;
+            services.AddDbContext<GuestbookContext>(options => options.UseSqlServer(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
